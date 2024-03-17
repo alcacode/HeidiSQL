@@ -122,7 +122,7 @@ var
   Conn: TDBConnection;
   SQLFunc: TSQLFunction;
   AllKeywords, ImportantKeywords, PairKeywords: TStringList;
-  i, Run, KeywordMaxLen: Integer;
+  i, Run: Integer;
   IsEsc, IsQuote, InComment, InBigComment, InString, InKeyword, InIdent, LastWasComment: Boolean;
   c, p: Char;
   Keyword, PreviousKeyword, TestPair: String;
@@ -144,9 +144,6 @@ begin
   Datatypes := Conn.Datatypes;
   for i:=Low(Datatypes) to High(Datatypes) do
     AllKeywords.Add(Datatypes[i].Name);
-  KeywordMaxLen := 0;
-  for i:=0 to AllKeywords.Count-1 do
-    KeywordMaxLen := Max(KeywordMaxLen, Length(AllKeywords[i]));
 
   // A subset of the above list, each of them will get a linebreak left to it
   ImportantKeywords := Explode(',', 'SELECT,FROM,LEFT,RIGHT,STRAIGHT,NATURAL,INNER,JOIN,WHERE,GROUP,ORDER,HAVING,LIMIT,CREATE,DROP,UPDATE,INSERT,REPLACE,TRUNCATE,DELETE');
